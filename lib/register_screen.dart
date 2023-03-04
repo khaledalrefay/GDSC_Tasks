@@ -36,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ClipPath(
                   clipper: WaveClipper(),
                   child: Container(
-                    color: Colors.purple,
+                    color: Colors.indigo,
                     width: double.infinity,
                     height: 170,
                     child: Container(
@@ -62,19 +62,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       TextFormField(
                         controller: namecontoller,
                         keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           filled: true,
-                          fillColor: Colors.pink[50],
-                          prefixIcon: const Icon(
+                          fillColor: Color.fromARGB(255, 189, 199, 255),
+                          prefixIcon: Icon(
                             Icons.person,
                           ),
-                          border: const OutlineInputBorder(
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(15),
                             ),
                           ),
                           hintText: 'Full Name',
-                          label: const Text('Full Name'),
+                          label: Text('Full Name'),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -90,19 +90,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       TextFormField(
                         controller: emailcontoller,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           filled: true,
-                          fillColor: Colors.pink[50],
-                          prefixIcon: const Icon(
+                          fillColor: Color.fromARGB(255, 189, 199, 255),
+                          prefixIcon: Icon(
                             Icons.email,
                           ),
-                          border: const OutlineInputBorder(
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(15),
                             ),
                           ),
                           hintText: 'Email',
-                          label: const Text('Email'),
+                          label: Text('Email'),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -124,7 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.pink[50],
+                          fillColor: const Color.fromARGB(255, 189, 199, 255),
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.pink[50],
+                          fillColor: const Color.fromARGB(255, 189, 199, 255),
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -207,19 +207,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       TextFormField(
                         controller: phonecontoller,
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           filled: true,
-                          fillColor: Colors.pink[50],
-                          prefixIcon: const Icon(
+                          fillColor: Color.fromARGB(255, 189, 199, 255),
+                          prefixIcon: Icon(
                             Icons.phone,
                           ),
-                          border: const OutlineInputBorder(
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(15),
                             ),
                           ),
                           hintText: 'Phone Number',
-                          label: const Text('Phone Number'),
+                          label: Text('Phone Number'),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -238,7 +238,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         width: 350,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.purple,
+                          color: Colors.indigo,
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: TextButton(
@@ -275,7 +275,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(25),
-                            border: Border.all(width: 3, color: Colors.purple)),
+                            border: Border.all(width: 3, color: Colors.indigo)),
                         child: TextButton(
                           onPressed: () {
                             Navigator.push(
@@ -288,7 +288,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             'Login',
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.purple,
+                              color: Colors.indigo,
                             ),
                           ),
                         ),

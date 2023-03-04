@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ClipPath(
                   clipper: WaveClipper(),
                   child: Container(
-                    color: Colors.purple,
+                    color: Colors.indigo,
                     width: double.infinity,
                     height: 170,
                     child: Container(
@@ -59,19 +59,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         controller: emailcontoller,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           filled: true,
-                          fillColor: Colors.pink[50],
-                          prefixIcon: const Icon(
+                          fillColor: Color.fromARGB(255, 189, 199, 255),
+                          prefixIcon: Icon(
                             Icons.email,
                           ),
-                          border: const OutlineInputBorder(
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(15),
                             ),
                           ),
                           hintText: 'Email',
-                          label: const Text('Email'),
+                          label: Text('Email'),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.pink[50],
+                          fillColor: const Color.fromARGB(255, 189, 199, 255),
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 350,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.purple,
+                          color: Colors.indigo,
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: TextButton(
@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(25),
-                            border: Border.all(width: 3, color: Colors.purple)),
+                            border: Border.all(width: 3, color: Colors.indigo)),
                         child: TextButton(
                           onPressed: () {
                             Navigator.push(
@@ -179,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'Register',
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.purple,
+                              color: Colors.indigo,
                             ),
                           ),
                         ),

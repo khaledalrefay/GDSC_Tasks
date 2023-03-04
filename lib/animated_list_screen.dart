@@ -30,7 +30,7 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
       body: Column(
         children: [
           Container(
-            color: Colors.purple,
+            color: Colors.indigo,
             height: 50,
             width: double.infinity,
             child: TextButton(
@@ -51,6 +51,7 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
                 return SizeTransition(
                   sizeFactor: animation,
                   child: AnimatedListItem(
+                    cardcolor: const Color.fromARGB(255, 152, 167, 252),
                     onPressed: () {
                       deleteItem(index);
                     },
@@ -69,7 +70,7 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
     var index = items.length;
     items.add('item ${index + 1}');
     key.currentState!
-        .insertItem(index, duration: const Duration(milliseconds: 1000));
+        .insertItem(index, duration: const Duration(milliseconds: 1800));
     Future.delayed(const Duration(milliseconds: 300), () {
       scrollController.animateTo(scrollController.position.maxScrollExtent,
           duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
@@ -77,13 +78,13 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
   }
 
   void deleteItem(int index) {
-    var removeritem = items.removeAt(index);
     key.currentState!.removeItem(index,
-        duration: const Duration(milliseconds: 1000), (context, animation) {
+        duration: const Duration(milliseconds: 1800), (context, animation) {
       return SizeTransition(
         sizeFactor: animation,
         child: AnimatedListItem(
-          text: removeritem,
+          cardcolor: Color.fromARGB(255, 255, 97, 86),
+          text: 'Deleting',
           onPressed: () {},
         ),
       );
@@ -93,20 +94,31 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
 
 class AnimatedListItem extends StatelessWidget {
   const AnimatedListItem(
-      {Key? key, required this.text, required this.onPressed})
+      {Key? key,
+      required this.text,
+      required this.onPressed,
+      required this.cardcolor})
       : super(key: key);
+  final Color cardcolor;
   final String text;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-      elevation: 5,
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+      elevation: 10,
+      color: cardcolor,
       child: ListTile(
-        title: Text(text),
+        title: Text(
+          text,
+          style: const TextStyle(fontSize: 24, color: Colors.indigo),
+        ),
         trailing: IconButton(
           onPressed: onPressed,
-          icon: const Icon(Icons.delete),
+          icon: const Icon(
+            Icons.delete_rounded,
+            color: Colors.indigo,
+          ),
         ),
       ),
     );
