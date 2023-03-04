@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gdsc_tasks/home.dart';
+import 'package:gdsc_tasks/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: const MyHomePage(),
+      home: const RegisterScreen(),
     );
   }
 }

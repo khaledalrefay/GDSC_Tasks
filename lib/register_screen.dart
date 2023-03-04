@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:gdsc_tasks/listview.dart';
+import 'package:gdsc_tasks/animated_list_screen.dart';
+import 'package:gdsc_tasks/login_screen.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({
     super.key,
   });
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController passcontoller = TextEditingController();
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController namecontoller = TextEditingController();
   final TextEditingController emailcontoller = TextEditingController();
+  final TextEditingController passwordcontoller = TextEditingController();
+  final TextEditingController confirmpasswordcontoller =
+      TextEditingController();
+  final TextEditingController phonecontoller = TextEditingController();
+
   final formkey = GlobalKey<FormState>();
   bool _obscureText = true;
+  bool _obscureText2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,28 +38,54 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Container(
                     color: Colors.purple,
                     width: double.infinity,
-                    height: 200,
-                    child: const Center(
-                      child: Text(
-                        'Login',
+                    height: 170,
+                    child: Container(
+                      alignment: const Alignment(0, -0.4),
+                      child: const Text(
+                        'Register',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 48,
+                          fontSize: 36,
                         ),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 25,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      TextFormField(
+                        controller: namecontoller,
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.pink[50],
+                          prefixIcon: const Icon(
+                            Icons.person,
+                          ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                          ),
+                          hintText: 'Full Name',
+                          label: const Text('Full Name'),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your fullname';
+                          }
+
+                          return null;
+                        },
+                      ),
                       const SizedBox(
-                        height: 10,
+                        height: 15,
                       ),
                       TextFormField(
                         controller: emailcontoller,
@@ -76,17 +109,17 @@ class _MyHomePageState extends State<MyHomePage> {
                             return 'Please enter your email';
                           }
                           if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(value!)) {
+                              .hasMatch(value)) {
                             return 'Please enter a valid email';
                           }
                           return null;
                         },
                       ),
                       const SizedBox(
-                        height: 25,
+                        height: 15,
                       ),
                       TextFormField(
-                        controller: passcontoller,
+                        controller: passwordcontoller,
                         obscureText: _obscureText,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -117,14 +150,89 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (value!.isEmpty) {
                             return 'Please enter your password';
                           }
-                          if (value!.length < 8) {
-                            return 'Password must be at least 6 characters long';
+
+                          if (value.length < 8) {
+                            return 'Password must be at least 8 characters long';
                           }
                           return null;
                         },
                       ),
                       const SizedBox(
-                        height: 35,
+                        height: 15,
+                      ),
+                      TextFormField(
+                        controller: confirmpasswordcontoller,
+                        obscureText: _obscureText2,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.pink[50],
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _obscureText2 = !_obscureText2;
+                              });
+                            },
+                            child: Icon(_obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                          ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                          ),
+                          hintText: 'Password',
+                          label: const Text('Password'),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please confirm your password';
+                          }
+                          if (value != passwordcontoller.text) {
+                            return 'Passwords do not match';
+                          }
+                          if (value.length < 8) {
+                            return 'Password must be at least 8 characters long';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        controller: phonecontoller,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.pink[50],
+                          prefixIcon: const Icon(
+                            Icons.phone,
+                          ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                          ),
+                          hintText: 'Phone Number',
+                          label: const Text('Phone Number'),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your phone number';
+                          }
+                          if (RegExp(r'^\+?[0-10]{10,12}$').hasMatch(value)) {
+                            return 'Please enter a valid phone number';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       Container(
                         width: 350,
@@ -136,8 +244,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: TextButton(
                           onPressed: () {
                             if (formkey.currentState!.validate()) {
+                              debugPrint(namecontoller.text);
                               debugPrint(emailcontoller.text);
-                              debugPrint(passcontoller.text);
+                              debugPrint(passwordcontoller.text);
+                              debugPrint(confirmpasswordcontoller.text);
+                              debugPrint(phonecontoller.text);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -147,7 +258,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             }
                           },
                           child: const Text(
-                            'Login',
+                            'Register',
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
@@ -156,7 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Container(
                         width: 350,
@@ -166,9 +277,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.circular(25),
                             border: Border.all(width: 3, color: Colors.purple)),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()),
+                            );
+                          },
                           child: const Text(
-                            'Register',
+                            'Login',
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.purple,
