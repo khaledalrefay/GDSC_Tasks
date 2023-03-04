@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gdsc_tasks/register_screen.dart';
 
+import 'animated_list_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: const RegisterScreen(),
+      home: const AnimatedListScreen(),
     );
   }
 }

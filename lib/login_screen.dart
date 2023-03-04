@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
 class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
     path.lineTo(0, size.height);
     var firststart = Offset(size.width / 5, size.height);
     var firstend = Offset(size.width / 2.25, size.height - 50);

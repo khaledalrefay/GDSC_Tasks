@@ -83,7 +83,7 @@ class _AnimatedListScreenState extends State<AnimatedListScreen> {
       return SizeTransition(
         sizeFactor: animation,
         child: AnimatedListItem(
-          cardcolor: Color.fromARGB(255, 255, 97, 86),
+          cardcolor: const Color.fromARGB(255, 249, 132, 123),
           text: 'Deleting',
           onPressed: () {},
         ),
