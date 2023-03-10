@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:gdsc_tasks/animated_list_screen.dart';
-import 'package:gdsc_tasks/login_screen.dart';
+import 'package:gdsc_tasks/task1/animated_list_screen.dart';
+import 'package:gdsc_tasks/task1/register_screen.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({
     super.key,
   });
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController namecontoller = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController passcontoller = TextEditingController();
   final TextEditingController emailcontoller = TextEditingController();
-  final TextEditingController passwordcontoller = TextEditingController();
-  final TextEditingController confirmpasswordcontoller =
-      TextEditingController();
-  final TextEditingController phonecontoller = TextEditingController();
-
   final formkey = GlobalKey<FormState>();
   bool _obscureText = true;
-  bool _obscureText2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Container(
                       alignment: const Alignment(0, -0.4),
                       child: const Text(
-                        'Register',
+                        'Login',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 36,
@@ -52,40 +46,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 75,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextFormField(
-                        controller: namecontoller,
-                        keyboardType: TextInputType.name,
-                        decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(255, 189, 199, 255),
-                          prefixIcon: Icon(
-                            Icons.person,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          hintText: 'Full Name',
-                          label: Text('Full Name'),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your fullname';
-                          }
-
-                          return null;
-                        },
-                      ),
                       const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       TextFormField(
                         controller: emailcontoller,
@@ -116,10 +85,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 25,
                       ),
                       TextFormField(
-                        controller: passwordcontoller,
+                        controller: passcontoller,
                         obscureText: _obscureText,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -150,7 +119,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           if (value!.isEmpty) {
                             return 'Please enter your password';
                           }
-
                           if (value.length < 8) {
                             return 'Password must be at least 8 characters long';
                           }
@@ -158,81 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                       ),
                       const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        controller: confirmpasswordcontoller,
-                        obscureText: _obscureText2,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color.fromARGB(255, 189, 199, 255),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _obscureText2 = !_obscureText2;
-                              });
-                            },
-                            child: Icon(_obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility),
-                          ),
-                          prefixIcon: const Icon(
-                            Icons.lock,
-                          ),
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          hintText: 'Password',
-                          label: const Text('Password'),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please confirm your password';
-                          }
-                          if (value != passwordcontoller.text) {
-                            return 'Passwords do not match';
-                          }
-                          if (value.length < 8) {
-                            return 'Password must be at least 8 characters long';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        controller: phonecontoller,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(255, 189, 199, 255),
-                          prefixIcon: Icon(
-                            Icons.phone,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          hintText: 'Phone Number',
-                          label: Text('Phone Number'),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your phone number';
-                          }
-                          if (RegExp(r'^\+?[0-10]{10,12}$').hasMatch(value)) {
-                            return 'Please enter a valid phone number';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
+                        height: 120,
                       ),
                       Container(
                         width: 350,
@@ -244,11 +138,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: TextButton(
                           onPressed: () {
                             if (formkey.currentState!.validate()) {
-                              debugPrint(namecontoller.text);
                               debugPrint(emailcontoller.text);
-                              debugPrint(passwordcontoller.text);
-                              debugPrint(confirmpasswordcontoller.text);
-                              debugPrint(phonecontoller.text);
+                              debugPrint(passcontoller.text);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -258,7 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             }
                           },
                           child: const Text(
-                            'Register',
+                            'Login',
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
@@ -267,7 +158,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       Container(
                         width: 350,
@@ -281,11 +172,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const LoginScreen()),
+                                  builder: (context) => const RegisterScreen()),
                             );
                           },
                           child: const Text(
-                            'Login',
+                            'Register',
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.indigo,

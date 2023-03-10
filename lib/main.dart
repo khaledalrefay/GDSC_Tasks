@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gdsc_tasks/register_screen.dart';
 
-import 'animated_list_screen.dart';
+import 'package:gdsc_tasks/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,11 +18,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Register',
+      title: 'GDSC',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: const AnimatedListScreen(),
+      home: const SplashScreen(),
     );
   }
 }
